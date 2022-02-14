@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:portail_personnel/pages/menu/services/demande_s.dart';
 import 'package:portail_personnel/pages/menu/services/mes_s.dart';
 
-
 class MyBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,44 +19,38 @@ class _MyBottomBar extends State<MyBottomBar> {
   int _currentIndex = 0;
 
   @override
-
   Widget build(BuildContext context) {
-
-    final tabs = [
-      DemandeService(),
-      MesS()
-    ];
+    final tabs = [DemandeService(), MesS()];
     // TODO: implement build
-    return
-      Scaffold(
-        body: tabs [_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          selectedFontSize: 13,
-          items: [
-            BottomNavigationBarItem(icon: Icon(
+    return Scaffold(
+      body: tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedFontSize: 13,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.add_box_outlined,
               color: Color(0xff04253A),
             ),
-              title: Text("Demande",style: TextStyle(color: Color(0xff04253A)),),
-            ),
-            BottomNavigationBarItem(icon: Icon(
+            label: "Demande",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.preview_outlined,
               color: Color(0xff04253A),
             ),
-              title: Text('Mes Services',style: TextStyle(color: Color(0xff04253A))),
-            ),
-
-          ],
-          onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-
-          },
-        ),
-        // ),
-      );
+            label: 'Mes Services',
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+      // ),
+    );
   }
 }
 

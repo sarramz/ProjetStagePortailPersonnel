@@ -23,8 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+  local_auth: ^1.1.10
+  intl: ^0.17.0
+  curved_navigation_bar: ^1.0.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -33,7 +34,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   syncfusion_flutter_charts: ^19.1.54
-  table_calendar: ^3.0.1
+  table_calendar: ^3.0.3
   select_form_field: "^2.2.0"
   syncfusion_flutter_datepicker: ^19.1.57-beta
 
@@ -56,7 +57,7 @@ flutter:
     - images/hello.png
     - images/s1.jpg
     - images/s2.jpg
-
+    - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

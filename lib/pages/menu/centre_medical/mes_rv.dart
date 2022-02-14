@@ -9,16 +9,8 @@ class MesRv extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child:
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/bg.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child:
-          Column(
+        child: Container(
+          child: Column(
             children: [
               SearchF(),
               Container(
@@ -37,19 +29,18 @@ class MesRv extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.vertical,
                   children: <Widget>[
-                    RVT ('Medecin interne','Abdallah Maya', '07/08/2021',Color(0xff008037)),
-                    RVT ('Medecin interne','Abdallah Maya', '05/08/2021',Color(0xffb20e0e)),
-                    RVT ('Medecin interne','Abdallah Maya', '27/08/2021',Color(0xff04253A)),
-
-
+                    RVT('Medecin interne', 'Abdallah Maya', '07/08/2021',
+                        Color(0xff008037)),
+                    RVT('Medecin interne', 'Abdallah Maya', '05/08/2021',
+                        Color(0xffb20e0e)),
+                    RVT('Medecin interne', 'Abdallah Maya', '27/08/2021',
+                        Color(0xff04253A)),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
-
       ),
     );
   }

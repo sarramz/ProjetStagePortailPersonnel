@@ -9,20 +9,12 @@ class MesFiches extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child:
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/bg.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child:
-          Column(
+        child: Container(
+          child: Column(
             children: [
               SearchF(),
               Container(
-                margin: EdgeInsets.only(left: 10.0,top: 5.0),
+                margin: EdgeInsets.only(left: 10.0, top: 5.0),
                 child: Row(
                   children: [
                     Headings("Type", 200),
@@ -42,15 +34,12 @@ class MesFiches extends StatelessWidget {
                     FichesT('Type 35263900'),
                     FichesT('Type 35263900'),
                     FichesT('Type 35263900'),
-
                   ],
                 ),
               ),
-
             ],
           ),
         ),
-
       ),
     );
   }

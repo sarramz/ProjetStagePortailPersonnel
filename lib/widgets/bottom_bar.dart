@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portail_personnel/pages/dashboard/dashboard.dart';
 import 'package:portail_personnel/pages/notif/notif.dart';
 import 'package:portail_personnel/pages/menu/menu.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomBar extends StatefulWidget {
   @override
@@ -9,114 +10,52 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedItem = 1;
-
-
+  final navigationKey = GlobalKey<CurvedNavigationBarState>();
+  int index = 1;
+  final screens = [
+    Dashboard(),
+    Notif(),
+    Menu(),
+  ];
   @override
   Widget build(BuildContext context) {
-    final tabs = [
-      Notif(),
-      Dashboard(),
-      Menu()
+    final items = <Widget>[
+      Icon(Icons.home, size: 30),
+      Icon(Icons.add_alert, size: 30),
+      Icon(Icons.list, size: 30),
     ];
-    return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
-        iconList: [
-
-          Icons.notifications_outlined,
-          Icons.home_outlined,
-          Icons.menu_outlined,
-          // Icons.logout_outlined,
-
-        ],
-        onChange: (val) {
-          setState(() {
-            _selectedItem = val;
-          });
-        },
-        defaultSelectedIndex: 1,
-      ),
-      body:tabs [_selectedItem],
-    );
-  }
-}
-
-class CustomBottomNavigationBar extends StatefulWidget {
-  final int defaultSelectedIndex;
-  final Function(int) onChange;
-  final List<IconData> iconList;
-
-  CustomBottomNavigationBar(
-      {this.defaultSelectedIndex = 0,
-        required this.iconList,
-        required this.onChange});
-
-  @override
-  _CustomBottomNavigationBarState createState() =>
-      _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int _selectedIndex = 0;
-  List<IconData> _iconList = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    _selectedIndex = widget.defaultSelectedIndex;
-    _iconList = widget.iconList;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> _navBarItemList = [];
-
-    for (var i = 0; i < _iconList.length; i++) {
-      _navBarItemList.add(buildNavBarItem(_iconList[i], i));
-    }
-
     return Container(
-      color: Colors.black.withOpacity(0.3),
-      child: Row(
-        children: _navBarItemList,
-      ),
-    );
-  }
-
-  Widget buildNavBarItem(IconData icon, int index) {
-    return GestureDetector(
-      onTap: () {
-        widget.onChange(index);
-        setState(() {
-          _selectedIndex = index;
-        });
-      },
-      child: Container(
-        height: 60,
-        width: MediaQuery.of(context).size.width / _iconList.length,
-        decoration: index == _selectedIndex
-            ? BoxDecoration(
-            border:
-            Border(
-              bottom: BorderSide(width: 4, color: Colors.white),
+      color: Colors.white,
+      child: SafeArea(
+          top: false,
+          child: ClipRect(
+            child: Scaffold(
+              extendBody: true,
+              /*
+              appBar: AppBar(
+                title: const Text('Hi Sarra'),
+              ),*/
+              body: screens[index],
+              bottomNavigationBar: Theme(
+                data: Theme.of(context).copyWith(
+                  iconTheme: IconThemeData(color: Colors.indigo),
+                ),
+                child: CurvedNavigationBar(
+                  key: navigationKey,
+                  color: Colors.grey, //couleur de  navigation Bar
+                  buttonBackgroundColor: Colors.white, // couleur de l'icon
+                  backgroundColor: Colors.transparent, //arriere plan de l'icon
+                  height: 60,
+                  /*
+              animationCurve: Curves.easeInOut,
+              animationDuration: Duration(microseconds: 300),*/
+                  index: index,
+                  items: items,
+                  onTap: (index) => setState(() => this.index = index),
+                ),
+              ),
             ),
-            gradient: LinearGradient(colors: [
-              Colors.white.withOpacity(0.3),
-              Colors.white.withOpacity(0.015),
-            ], begin: Alignment.bottomCenter, end: Alignment.topCenter)
-          // color: index == _selectedItemIndex ? Colors.green : Colors.white,
-        )
-            : BoxDecoration(),
-        child:
-        Icon(
-          icon,
-          size:index == _selectedIndex ? 30 : 25,
-          color: index == _selectedIndex ? Colors.white : Colors.black.withOpacity(0.3),
-        ),
-        // ),
-      ),
+          )),
     );
   }
 }

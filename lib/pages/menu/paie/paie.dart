@@ -11,22 +11,23 @@ class Paie extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("images/bg.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ MenuItem(0.45,"Fiches de Paie", Icons.receipt_long_outlined,MesFiches()), ],),
+                children: [
+                  MenuItem(0.45, "Fiches de Paie", Icons.receipt_long_outlined,
+                      MesFiches()),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ MenuItem(0.45, "Mes Préts", Icons.assignment_ind_outlined,MesPrets()), ],),
-
+                children: [
+                  MenuItem(0.45, "Mes Préts", Icons.assignment_ind_outlined,
+                      MesPrets()),
+                ],
+              ),
             ],
           ),
         ),

@@ -5,38 +5,33 @@ class DemandeService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      SafeArea(
-          child:
-            Container(
-            decoration: BoxDecoration(
-            image: DecorationImage(
-            image: AssetImage("images/bg.png"),
-              fit: BoxFit.cover,
-            ),
-            ),
-              child:
-                Column(
-                  children: [
-                    BuildRow("s1.jpg","Attestation de Travail","s2.jpg","Attestation de Travail "),
-                  ],
-                ),
-
-    ),);
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: [
+            BuildRow("s1.jpg", "Attestation de Travail", "s2.jpg",
+                "Attestation de Travail "),
+          ],
+        ),
+      ),
+    );
   }
 }
 
-class BuildService extends StatelessWidget{
+class BuildService extends StatelessWidget {
   _buildTextField(String labelText) {
     // TextEditingController controller,
     return Container(
-      margin: const EdgeInsets.only(top: 20.0, left: 10.0,right: 10.0,bottom:10.0),
+      margin: const EdgeInsets.only(
+          top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide( //
+          bottom: BorderSide(
+            //
             color: Color(0xff111c46),
             width: 2.0,
-          ),),
+          ),
+        ),
       ),
       child: TextField(
         // controller: controller,
@@ -44,13 +39,14 @@ class BuildService extends StatelessWidget{
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 8),
             labelText: labelText,
-            labelStyle: TextStyle(color: Color(0xff111c46), fontFamily: 'andada'),
+            labelStyle:
+                TextStyle(color: Color(0xff111c46), fontFamily: 'andada'),
             border: InputBorder.none),
       ),
     );
   }
 
-  BuildService(this.imgName,this.service );
+  BuildService(this.imgName, this.service);
   final String imgName;
   final String service;
   @override
@@ -61,11 +57,10 @@ class BuildService extends StatelessWidget{
         Container(
           width: 150,
           height: 150,
-          child: Image.asset('images/' + imgName),
+          //   child: Image.asset('images/' + imgName),
         ),
         new Container(
-          margin: const EdgeInsets.only(
-              left: 10.0, right: 10.0, bottom: 5.0),
+          margin: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5.0),
           child: OutlinedButton(
             onPressed: () {
               showDialog(
@@ -73,7 +68,10 @@ class BuildService extends StatelessWidget{
                   builder: (BuildContext context) {
                     return AlertDialog(
                       scrollable: true,
-                      title: Text("Demande d'une Attestation de Travail",style: TextStyle(color:Color(0xff111c46) ),),
+                      title: Text(
+                        "Demande d'une Attestation de Travail",
+                        style: TextStyle(color: Color(0xff111c46)),
+                      ),
                       content: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Form(
@@ -88,22 +86,27 @@ class BuildService extends StatelessWidget{
                       ),
                       actions: [
                         RaisedButton(
-                            color: Color(0xff008037) ,
+                            color: Color(0xff008037),
                             //#008037
-                            child: Text("Submit",style: TextStyle(color: Colors.white),),
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             onPressed: () {
                               // your code
                             })
                       ],
                     );
-                  });},
-            child: Text(service,
-              style: TextStyle(color: Color(0xFF111C46), fontSize: 13,fontFamily: 'andada'
-              ),),
+                  });
+            },
+            child: Text(
+              service,
+              style: TextStyle(
+                  color: Color(0xFF111C46), fontSize: 13, fontFamily: 'andada'),
+            ),
             style: OutlinedButton.styleFrom(
               side: BorderSide(width: 1.0, color: Color(0xFF111C46)),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-
             ),
           ),
         )
@@ -113,7 +116,9 @@ class BuildService extends StatelessWidget{
 }
 
 class BuildRow extends StatelessWidget {
-  const BuildRow(this.imgName1,this.service1,this.imgName2,this.service2,{Key? key}) : super(key: key);
+  const BuildRow(this.imgName1, this.service1, this.imgName2, this.service2,
+      {Key? key})
+      : super(key: key);
 
   final String imgName1;
   final String service1;
@@ -130,4 +135,3 @@ class BuildRow extends StatelessWidget {
     );
   }
 }
-
