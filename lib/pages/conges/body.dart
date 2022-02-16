@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+/*
 //items de listview
 class Item extends StatelessWidget {
   Item(this.title);
@@ -21,7 +22,8 @@ class Item extends StatelessWidget {
     );
   }
 }
-
+*/
+/*
 //titre de listview
 class Title extends StatelessWidget {
   Title(this.title);
@@ -40,7 +42,7 @@ class Title extends StatelessWidget {
     );
   }
 }
-
+*/
 /*
 //listview Titre
 class MyRow extends StatelessWidget {
@@ -108,12 +110,13 @@ class MyBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //titre
             Container(
               margin: const EdgeInsets.all(20.0),
               child: Text(
                 'Mes Congés',
                 style: TextStyle(
-                  color: primaryColor,
+                  color: primaryColor, //
                   fontWeight: FontWeight.bold,
                   fontSize: 30.0,
                   fontFamily: 'dm',
@@ -197,29 +200,30 @@ class MyBody extends StatelessWidget {
                   scrollable: true,
                   title: Text(
                     "Demande d'un Congé",
-                    style: TextStyle(color: Color(0xff111c46)),
+                    style: TextStyle(color: Color(0xff0b2bab)),
                   ),
                   content: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Container(
                       height: 460,
                       width: 500,
-                      child: RangePicker(),
+                      child: RangePicker(), //calandrier dans un modal
                     ),
                   ),
                 );
               });
         },
-        backgroundColor: thirdColor,
+        backgroundColor: Color(0xff0b2bab), // button color
         child: Icon(Icons.add),
       ),
     );
   }
 }
 
-//Calendar
+//Calendar lekbira
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title})
+      : super(key: key); //fonction avec le titre en parametre
   final String title;
   @override
   _MyHomePageState createState() => _MyHomePageState();
