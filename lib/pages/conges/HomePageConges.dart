@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portail_personnel/pages/conges/Description%20du%20congee.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -107,47 +108,30 @@ class _HomePageState extends State<HomePage> {
                     title: Text(e.title),
                   ),
                 ),
-                FloatingActionButton.extended(
-                  onPressed: () => showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            title: Text("Ajouter une description"),
-                            content: TextFormField(
-                              controller: _desController,
+                FloatingActionButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            scrollable: true,
+                            title: Text(
+                              "Demande d'un Congé",
+                              style: TextStyle(color: Color(0xff0b2bab)),
                             ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  _desController.clear();
-                                },
-                                child: Text("Cancel"),
+                            content: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                height: 460,
+                                width: 500,
+                                child: RangePicker(), //calandrier dans un modal
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  if (_desController.text.isEmpty) {
-                                  } else {
-                                    if (selectedDes[selectedDay] != null) {
-                                      selectedDes[selectedDay]?.add(
-                                        Description(title: _desController.text),
-                                      );
-                                    } else {
-                                      selectedDes[selectedDay] = [
-                                        Description(title: _desController.text)
-                                      ];
-                                    }
-                                    Navigator.pop(context);
-                                    _desController.clear();
-                                    setState(() {});
-                                    return;
-                                  }
-                                },
-                                child: Text("ok"),
-                              ),
-                            ],
-                          )),
-                  label: Text("Add Description"),
-                  icon: Icon(Icons.add),
+                            ),
+                          );
+                        });
+                  },
+                  backgroundColor: Color(0xff0b2bab), // button color
+                  child: Icon(Icons.add),
                 ),
               ],
             ),
@@ -155,5 +139,98 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+}
+
+class RangePicker extends StatefulWidget {
+  @override
+  _RangePickerState createState() => _RangePickerState();
+}
+
+class _RangePickerState extends State<RangePicker> {
+  DateRangePickerController _date = DateRangePickerController();
+  final TextEditingController controller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Form(
+      key: _formKey,
+      child: Container(
+        child: Column(children: [
+          Container(
+            padding: EdgeInsets.only(bottom: 20),
+            child: TextFormField(
+              controller: controller,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+              style: TextStyle(color: Color(0xff111c46)),
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                  labelText: "Description",
+                  labelStyle: TextStyle(
+                      color: Color(0xff111c46),
+                      fontSize: 17,
+                      decoration: TextDecoration.underline),
+                  border: InputBorder.none),
+            ),
+          ),
+          SfDateRangePicker(
+            view: DateRangePickerView.month,
+            monthViewSettings:
+                DateRangePickerMonthViewSettings(firstDayOfWeek: 1),
+            selectionMode: DateRangePickerSelectionMode.range,
+            selectionColor: Colors.blue,
+            onSelectionChanged: _onSelection,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0, top: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context, true);
+                    },
+                    child: const Text('Annuler'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0, top: 20),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Validate returns true if the form is valid, or false otherwise.
+                      if (_formKey.currentState!.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                        print(controller.text);
+                        Navigator.pop(context, true);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text(
+                                  'Votre Demande de Congé est enregistrée')),
+                        );
+                      }
+                    },
+                    child: const Text('sauvgarder'),
+                  ),
+                ),
+              ],
+            ),
+          )
+        ]),
+      ),
+    );
+  }
+
+  void _onSelection(DateRangePickerSelectionChangedArgs range) {
+    print(range.value);
   }
 }

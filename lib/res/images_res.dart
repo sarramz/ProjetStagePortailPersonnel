@@ -1,6 +1,18 @@
 /// This is a generated file do not edit.
 
 class ImagesRes {
+  static const String
+
+  0
+
+  =
+
+  '
+
+  images/0.png
+
+  ';
+
   static const String BG = 'images/bg.png';
   static const String HELLO = 'images/hello.png';
   static const String LOGO = 'images/logo.png';

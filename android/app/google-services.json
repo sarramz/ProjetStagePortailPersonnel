@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127579225121",
+    "project_id": "portailpersonnel-d6e5c",
+    "storage_bucket": "portailpersonnel-d6e5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127579225121:android:a7ba42fa7fe5009af5f760",
+        "android_client_info": {
+          "package_name": "tn.ommp.portail_personnel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127579225121-i3v6ru9fg0bn6hormeap6s7ostjg0i8v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8HjYrvEQ4CZwe5dJF3hO07B44T6DelPc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127579225121-i3v6ru9fg0bn6hormeap6s7ostjg0i8v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
