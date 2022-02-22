@@ -1,4 +1,5 @@
 //import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:portail_personnel/pages/conges/Description%20du%20congee.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   DateTime focusedDay = DateTime.now();
 
   TextEditingController _desController = TextEditingController();
+  /*
   @override
   void initState() {
     selectedDes = {};
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     _desController.dispose();
     super.dispose();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                     return isSameDay(selectedDay, date);
                   },
 
-                  eventLoader: _getDesfromDay,
+                  //  eventLoader: _getDesfromDay,
 
                   //to style the Calendar
                   calendarStyle: CalendarStyle(
@@ -103,11 +105,11 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(5.0)),
                   ),
                 ),
-                ..._getDesfromDay(selectedDay).map(
+                /*    ..._getDesfromDay(selectedDay).map(
                   (e) => ListTile(
                     title: Text(e.title),
                   ),
-                ),
+                ),*/
                 FloatingActionButton(
                   onPressed: () {
                     showDialog(
@@ -207,17 +209,12 @@ class _RangePickerState extends State<RangePicker> {
                   child: ElevatedButton(
                     onPressed: () {
                       // Validate returns true if the form is valid, or false otherwise.
-                      if (_formKey.currentState!.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        print(controller.text);
-                        Navigator.pop(context, true);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text(
-                                  'Votre Demande de Congé est enregistrée')),
-                        );
-                      }
+                      print(
+                        "save on firestore action",
+                      );
+                      FirebaseFirestore.instance
+                          .collection('leave')
+                          .add({'description': ''});
                     },
                     child: const Text('sauvgarder'),
                   ),

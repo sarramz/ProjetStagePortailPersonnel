@@ -70,7 +70,7 @@ class _MyAppState extends State<MyAppState> {
                         ),
                       ),
                     ),
-                    actions: [
+                    /*   actions: [
                       RaisedButton(
                           color: Color(0xff008037),
                           //#008037
@@ -78,10 +78,8 @@ class _MyAppState extends State<MyAppState> {
                             "Submit",
                             style: TextStyle(color: Colors.white),
                           ),
-                          onPressed: () {
-                            // your code
-                          })
-                    ],
+                          onPressed: () {})
+                    ],*/
                   );
                 });
           },
